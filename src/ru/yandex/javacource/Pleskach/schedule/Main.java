@@ -1,5 +1,8 @@
-import ru.yandex.javacource.Pleskach.schedule.Task.*;
-import ru.yandex.javacource.Pleskach.schedule.TaskManager;
+package ru.yandex.javacource.Pleskach.schedule;
+
+import ru.yandex.javacource.Pleskach.schedule.manager.TaskManager;
+import ru.yandex.javacource.Pleskach.schedule.task.*;
+
 public class Main {
 
     public static void main(String[] args) {

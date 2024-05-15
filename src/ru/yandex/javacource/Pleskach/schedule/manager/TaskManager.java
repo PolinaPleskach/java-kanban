@@ -1,6 +1,9 @@
-package ru.yandex.javacource.Pleskach.schedule;
+package ru.yandex.javacource.Pleskach.schedule.manager;
 
-import ru.yandex.javacource.Pleskach.schedule.Task.*;
+import ru.yandex.javacource.Pleskach.schedule.task.Epic;
+import ru.yandex.javacource.Pleskach.schedule.task.Status;
+import ru.yandex.javacource.Pleskach.schedule.task.Subtask;
+import ru.yandex.javacource.Pleskach.schedule.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;

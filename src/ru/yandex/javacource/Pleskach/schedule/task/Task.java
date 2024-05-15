@@ -1,4 +1,4 @@
-package ru.yandex.javacource.Pleskach.schedule.Task;
+package ru.yandex.javacource.Pleskach.schedule.task;
 
 import java.util.Objects;
 
@@ -50,7 +50,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.javacource.Pleskach.manager.Task{" +
+        return "ru.yandex.javacource.Pleskach.ru.yandex.javacource.Pleskach.schedule.manager.Task{" +
                 "idTask=" + id +
                 ", name='" + title + '\'' +
                 ", description='" + description + '\'' +

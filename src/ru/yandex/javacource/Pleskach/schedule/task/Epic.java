@@ -1,4 +1,4 @@
-package ru.yandex.javacource.Pleskach.schedule.Task;
+package ru.yandex.javacource.Pleskach.schedule.task;
 
 import java.util.ArrayList;
 
