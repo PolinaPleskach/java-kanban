@@ -1,21 +1,22 @@
-package realizationModel;
+package ru.yandex.javacource.Pleskach.schedule.Task;
 
 import java.util.ArrayList;
 
 public class Epic extends Task {
 
-    private ArrayList<Integer> epicSubtask;
+    private ArrayList<Integer> subtaskIds;
+
     public Epic(String title, String description) {
         super(title, description, Status.NEW);
-        epicSubtask = new ArrayList<>();
+        subtaskIds = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getEpicSubtasks() {
-        return epicSubtask;
+    public ArrayList<Integer> getSubtaskIds() {
+        return subtaskIds;
     }
 
-    public void setEpicSubtasks(ArrayList<Integer> epicSubtasks) {
-        this.epicSubtask = epicSubtasks;
+    public void setSubtaskIds(ArrayList<Integer> epicSubtasks) {
+        this.subtaskIds = epicSubtasks;
     }
 
     @Override
@@ -29,4 +30,7 @@ public class Epic extends Task {
     }
 
 
+    public void cleanSubtaskIds() {
+        subtaskIds.clear();
+    }
 }

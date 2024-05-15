@@ -1,12 +1,13 @@
-import realizationModel.*;
-import manager.TaskManager;
+import ru.yandex.javacource.Pleskach.schedule.Task.*;
+import ru.yandex.javacource.Pleskach.schedule.TaskManager;
 public class Main {
 
-    public static void main(String[] args) throws InputException {
+    public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
 
         Task taskOne = new Task("Погулять", "взять с собой кота", Status.NEW);
-        taskManager.createTask(taskOne);
+        int task1 = taskManager.createTask(taskOne);
+        System.out.println(task1);
         Task taskTwo = new Task("Выпить", "чай", Status.IN_PROGRESS);
         taskManager.createTask(taskTwo);
 
