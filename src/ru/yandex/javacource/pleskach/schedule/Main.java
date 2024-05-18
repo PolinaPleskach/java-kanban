@@ -1,6 +1,6 @@
 package ru.yandex.javacource.pleskach.schedule;
 
-import ru.yandex.javacource.eskach.schedule.manager.TaskManager;
+import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
 import ru.yandex.javacource.pleskach.schedule.task.*;
 import ru.yandex.javacource.pleskach.schedule.task.Epic;
 import ru.yandex.javacource.pleskach.schedule.task.Status;
