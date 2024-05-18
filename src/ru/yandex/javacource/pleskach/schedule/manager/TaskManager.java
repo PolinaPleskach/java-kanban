@@ -1,9 +1,9 @@
-package ru.yandex.javacource.Pleskach.schedule.manager;
+package ru.yandex.javacource.pleskach.schedule.manager;
 
-import ru.yandex.javacource.Pleskach.schedule.task.Epic;
-import ru.yandex.javacource.Pleskach.schedule.task.Status;
-import ru.yandex.javacource.Pleskach.schedule.task.Subtask;
-import ru.yandex.javacource.Pleskach.schedule.task.Task;
+import ru.yandex.javacource.pleskach.schedule.task.Epic;
+import ru.yandex.javacource.pleskach.schedule.task.Status;
+import ru.yandex.javacource.pleskach.schedule.task.Subtask;
+import ru.yandex.javacource.pleskach.schedule.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +39,8 @@ public class TaskManager {
         tasks.put(id, task);
     }
 
-    public Object getTaskById(int id) {
-        if (tasks.containsKey(id)) {
-            return tasks.get(id);
-        }
-        return "Такой задачи не существует";
+    public Task getTask(int id) {
+        return tasks.get(id);
     }
 
     public List<Task> getAllTasks() {
@@ -59,11 +56,11 @@ public class TaskManager {
     }
 
 
-    public void createEpic(Epic epic) {
-        epic.setId(++generatorId);
-        epic.setStatus(Status.NEW);
-        epics.put(generatorId, epic);
-
+    public int createEpic(Epic epic) {
+        int id = ++generatorId;
+        epic.setId(id);
+        epics.put(id, epic);
+        return id;
     }
 
     public void updateEpic(Epic epic) {
@@ -75,12 +72,8 @@ public class TaskManager {
         savedEpic.setDescription(epic.getDescription());
     }
 
-    public Object getEpicById(int id) {
-        if (epics.containsKey(id)) {
-            return epics.get(id);
-        } else {
-            return "Такого эпика не существует";
-        }
+    public Epic getEpic(int id) {
+        return epics.get(id);
     }
 
     public List<Epic> getAllEpics() {
@@ -103,18 +96,12 @@ public class TaskManager {
     }
 
     public Integer createSubTask(Subtask subtask) {
-        int epicId = subtask.getEpicId();
-        Epic epic = epics.get(epicId);
-        if (epic == null) {
-            return null;
-        }
         int id = ++generatorId;
         subtask.setId(id);
-        subtasks.put(id, subtask);
-        subtask.getEpic().getSubtaskIds().add(id);
-        updateEpicStatus(epic);
-        return id;
+        subtasks.put(subtask.getId(), subtask);
+        return subtask.getId();
     }
+
 
     public void updateSubtask(Subtask subtask) {
         int id = subtask.getId();
@@ -131,12 +118,8 @@ public class TaskManager {
         updateEpicStatus(epic);
     }
 
-    public Object getSubtasksById(int id) {
-        if (subtasks.containsKey(id)) {
+    public Subtask getSubtasks(int id) {
             return subtasks.get(id);
-        } else {
-            return "Такой задачи не существует";
-        }
     }
 
     public List<Subtask> getAllSubtasks() {
@@ -159,6 +142,17 @@ public class TaskManager {
             updateEpicStatus(epic);
         }
         subtasks.clear();
+    }
+    public ArrayList<Subtask> getEpicSubtasks(int epicId) {
+        ArrayList<Subtask> tasks = new ArrayList<>();
+        Epic epic = epics.get(epicId);
+        if (epic == null) {
+            return tasks;
+        }
+        for (int id : epic.getSubtaskIds()) {
+            tasks.add(subtasks.get(id));
+        }
+        return tasks;
     }
 
     private void updateEpicStatus(Epic epic) {

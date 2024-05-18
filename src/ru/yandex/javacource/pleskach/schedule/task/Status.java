@@ -1,4 +1,4 @@
-package ru.yandex.javacource.Pleskach.schedule.task;
+package ru.yandex.javacource.pleskach.schedule.task;
 
 public enum Status {
     NEW,

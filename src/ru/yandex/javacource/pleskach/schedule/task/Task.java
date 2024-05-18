@@ -1,4 +1,4 @@
-package ru.yandex.javacource.Pleskach.schedule.task;
+package ru.yandex.javacource.pleskach.schedule.task;
 
 import java.util.Objects;
 
@@ -10,22 +10,15 @@ public class Task {
 
 
 
-    public Task(String title, String description, Status status) {
+    public Task(int id, String title, Status status, String description) {
         this.title = title;
         this.description = description;
+        this.id = id;
         this.status = status;
     }
 
     public int getId() {
         return id;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public void setId(int id) {
@@ -40,6 +33,14 @@ public class Task {
         this.title = title;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -47,6 +48,7 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     @Override
     public String toString() {
@@ -59,7 +61,17 @@ public class Task {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && Objects.equals(title, task.title)
+                && Objects.equals(description, task.description)
+                && status == task.status;
+    }
+
+    @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, status);
+        return Objects.hash(title, description, id, status);
     }
 }
