@@ -52,7 +52,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.javacource.Pleskach.ru.yandex.javacource.Pleskach.schedule.manager.Task{" +
+        return "ru.yandex.javacource.Pleskach.ru.yandex.javacource.Pleskach.schedule.ru.yandex.javacource.pleskach.schedule.test.manager.Task{" +
                 "idTask=" + id +
                 ", name='" + title + '\'' +
                 ", description='" + description + '\'' +
