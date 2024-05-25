@@ -1,4 +1,4 @@
-package ru.yandex.javacource.pleskach.schedule.test.manager;
+package ru.yandex.javacource.pleskach.schedule.manager;
 
 import org.junit.jupiter.api.Test;
 import ru.yandex.javacource.pleskach.schedule.manager.InMemoryTaskManager;
@@ -14,7 +14,7 @@ class InMemoryTaskManagerTest {
     TaskManager taskManager = Managers.getDefault();
 
     @Test
-    void AddDifferentTypesOfTasks()  {
+    void addDifferentTypesOfTasks()  {
         Task task1 = new Task(1,"addTask1", Status.NEW,"addDescription1");
         taskManager.createTask(task1);
         Epic epic1 = new Epic(1,"addEpic1", Status.NEW, "addDescription1");
@@ -30,7 +30,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void IdDidNotConflicted(){
+    void idDidNotConflicted(){
         Task task1 = new Task(1,"addTask1", Status.NEW,"addDescription1");
         taskManager.createTask(task1);
         Task task2 = new Task(2,"addTask2", Status.NEW,"addDescription2");

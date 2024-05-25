@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryTaskManager implements  TaskManager {
+public class InMemoryTaskManager implements TaskManager {
         private int generatorId;
         private final Map<Integer, Task> tasks;
         private final Map<Integer, Epic> epics;
@@ -45,7 +45,9 @@ public class InMemoryTaskManager implements  TaskManager {
 
         @Override
         public Task getTask(int id) {
-            return tasks.get(id);
+            final Task task = tasks.get(id);
+            historyManager.add(task);
+            return task;
         }
 
         @Override
@@ -73,17 +75,20 @@ public class InMemoryTaskManager implements  TaskManager {
 
         @Override
         public void updateEpic(Epic epic) {
-            Epic savedEpic = epics.get(epic.getId());
-            if (savedEpic == null) {
-                return;
-            }
-            savedEpic.setTitle(epic.getTitle());
-            savedEpic.setDescription(epic.getDescription());
+        final Epic savedEpic = epics.get(epic.getId());
+        if (savedEpic == null) {
+            return;
+        }
+        epic.setSubtaskIds(savedEpic.getSubtaskIds());
+        epic.setStatus(savedEpic.getStatus());
+        epics.put(epic.getId(), epic);
         }
 
         @Override
         public Epic getEpic(int id) {
-            return epics.get(id);
+            final Epic epic = epics.get(id);
+            historyManager.add(epic);
+            return epic;
         }
 
         @Override
@@ -134,7 +139,9 @@ public class InMemoryTaskManager implements  TaskManager {
 
         @Override
         public Subtask getSubtasks(int id) {
-            return subtasks.get(id);
+            final Subtask subtask = subtasks.get(id);
+            historyManager.add(subtask);
+            return subtask;
         }
 
         @Override
@@ -175,7 +182,12 @@ public class InMemoryTaskManager implements  TaskManager {
             return tasks;
         }
 
-         private void updateEpicStatus(Epic epic) {
+        @Override
+        public List<Task> getHistory() {
+            return historyManager.getHistory();
+        }
+
+        private void updateEpicStatus(Epic epic) {
 
             if (epic.getSubtaskIds().isEmpty()) {
                 epic.setStatus(Status.NEW);
@@ -201,16 +213,6 @@ public class InMemoryTaskManager implements  TaskManager {
             } else {
                 epic.setStatus(Status.IN_PROGRESS);
             }
-        }
-
-        @Override
-        public void addHistory() {
-            for (Task task : tasks.values()) historyManager.add(task);
-        }
-
-        @Override
-        public List<Task> getHistory() {
-            return historyManager.getHistory();
         }
 }
 

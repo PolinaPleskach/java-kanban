@@ -32,8 +32,6 @@ public class Main {
         System.out.println(manager.getTask(taskTwoId));
         System.out.println(manager.getTask(3));
 
-        manager.addHistory();
-
         System.out.println("История задач:");
         for (Task task : manager.getAllTasks()) {
             System.out.println(task);

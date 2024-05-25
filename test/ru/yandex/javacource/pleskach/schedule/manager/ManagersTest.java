@@ -1,4 +1,4 @@
-package ru.yandex.javacource.pleskach.schedule.test.manager;
+package ru.yandex.javacource.pleskach.schedule.manager;
 
 import org.junit.jupiter.api.Test;
 import ru.yandex.javacource.pleskach.schedule.manager.*;

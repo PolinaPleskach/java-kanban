@@ -1,4 +1,4 @@
-package ru.yandex.javacource.pleskach.schedule.test.task;
+package ru.yandex.javacource.pleskach.schedule.task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
