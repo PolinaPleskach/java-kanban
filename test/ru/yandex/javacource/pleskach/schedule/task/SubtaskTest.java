@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.yandex.javacource.pleskach.schedule.manager.Managers;
 import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
-import ru.yandex.javacource.pleskach.schedule.task.Epic;
-import ru.yandex.javacource.pleskach.schedule.task.Status;
 import ru.yandex.javacource.pleskach.schedule.task.Subtask;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class SubtaskTest {
     @Test
@@ -18,4 +18,5 @@ class SubtaskTest {
         Subtask subtaskTwo = new Subtask(1, "subtask2", Status.NEW, "description2", 1);
         Assertions.assertEquals(subtaskOne, subtaskTwo);
     }
+
 }
