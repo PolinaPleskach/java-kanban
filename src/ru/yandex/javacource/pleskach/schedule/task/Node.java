@@ -7,9 +7,10 @@ public class Node<T> { // отдельный класс Node для узла с�
     public Node<T> previous;
 
 
-    public Node(Node<T> prev, Task data, Node<T> next) {
+    public Node(Node<T> previous, Task data, Node<T> next) {
         this.data = data;
         this.next = next;
         this.previous = previous;
+
     }
 }

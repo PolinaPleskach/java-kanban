@@ -20,7 +20,11 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void remove(int id) {
-        removeNode(history.get(id));
+        final Node<Task> node = history.remove(id);
+        if (node == null) {
+            return;
+        }
+        removeNode(node);
     }
 
     @Override
@@ -28,7 +32,19 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (task != null) {
             remove(task.getId());
             linkLast(task);
+            history.put(task.getId(), tail);
         }
+    }
+
+
+    private void linkLast(Task element) {
+        final Node<Task> pastTail = tail;
+        final Node<Task> newNode = new Node<>(pastTail, element, null);
+        tail = newNode;
+        if (pastTail == null)
+            head = newNode;
+        else
+            pastTail.next = newNode;
     }
 
     @Override
@@ -46,36 +62,22 @@ public class InMemoryHistoryManager implements HistoryManager {
         return tasks;
     }
 
-    private void linkLast(Task element) {
-        final Node<Task> pastTail = tail;
-        final Node<Task> newNode = new Node<>(pastTail, element, null);
-        tail = newNode;
-        history.put(element.getId(), newNode);
-        if (pastTail == null)
-            head = newNode;
-        else
-            pastTail.next = newNode;
-    }
-
     private void removeNode(Node<Task> node) {
-        if (node != null) {
-            final Node<Task> next = node.next;
-            final Node<Task> prev = node.previous;
-            node.data = null;
-            if (tail == node && head == node) {
+        final Node<Task> next = node.next;
+        final Node<Task> prev = node.previous;
+        node.data = null;
+        if (tail == node && head == node) {
                 tail = null;
                 head = null;
-            } else if (tail != node && head == node) {
+        } else if (tail != node && head == node) {
                 head = next;
                 head.previous = null;
-            } else if (tail == node && head != node) {
+        } else if (tail == node && head != node) {
                 tail = prev;
                 tail.next = null;
-            } else {
+        } else {
                 prev.next = next;
                 next.previous = prev;
-            }
         }
     }
 }
-
