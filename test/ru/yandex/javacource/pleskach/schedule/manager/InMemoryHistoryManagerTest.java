@@ -1,21 +1,17 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
 import org.junit.jupiter.api.Assertions;
-import ru.yandex.javacource.pleskach.schedule.manager.HistoryManager;
-import ru.yandex.javacource.pleskach.schedule.manager.InMemoryHistoryManager;
-import ru.yandex.javacource.pleskach.schedule.manager.InMemoryTaskManager;
-import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
-import ru.yandex.javacource.pleskach.schedule.task.Task;
-import ru.yandex.javacource.pleskach.schedule.task.Status;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
+import ru.yandex.javacource.pleskach.schedule.task.Status;
+import ru.yandex.javacource.pleskach.schedule.task.Task;
 
 class InMemoryHistoryManagerTest {
 
     @Test
-    void savingPastVersionOfData() {
+    void savingPastVersionOfData() throws InvalidInputException {
         TaskManager taskManager = new InMemoryTaskManager();
-        Task task1 = new Task(1, "Task1", Status.NEW, "descriptionTask1");
+        Task task1 = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
         taskManager.createTask(task1);
         taskManager.getTask(task1.getId());
         Assertions.assertEquals(task1, taskManager.getHistory().getFirst());

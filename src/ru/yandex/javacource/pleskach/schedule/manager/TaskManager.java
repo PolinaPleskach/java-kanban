@@ -1,11 +1,10 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 import ru.yandex.javacource.pleskach.schedule.task.Epic;
-import ru.yandex.javacource.pleskach.schedule.task.Status;
 import ru.yandex.javacource.pleskach.schedule.task.Subtask;
 import ru.yandex.javacource.pleskach.schedule.task.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
@@ -14,31 +13,31 @@ public interface TaskManager {
 
     void updateTask(Task task);
 
-    Task getTask(int id);
+    Task getTask(int id) throws InvalidInputException;
 
     List<Task> getAllTasks();
 
-    void deleteTask(int id);
+    void deleteTask(int id) throws InvalidInputException;
 
-    void removeAllTasks();
+    void deleteTasks();
 
     int createEpic(Epic epic);
 
     void updateEpic(Epic epic);
 
-    Epic getEpic(int id);
+    Epic getEpic(int id) throws InvalidInputException;
 
     List<Epic> getAllEpics();
 
-    void deleteEpic(int id);
+    void deleteEpic(int id) throws InvalidInputException;
 
-    void removeAllEpics();
+    void deleteEpics();
 
     Integer createSubTask(Subtask subtask);
 
     void updateSubtask(Subtask subtask);
 
-    Subtask getSubtasks(int id);
+    Subtask getSubtasks(int id) throws InvalidInputException;
 
     List<Subtask> getAllSubtasks();
 

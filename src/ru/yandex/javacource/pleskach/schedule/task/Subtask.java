@@ -5,15 +5,18 @@ import java.util.Objects;
 public class Subtask extends Task {
     private int epicId;
 
+    public Subtask(String title, String description, Status status, Epic epic) {
+        super(title, description, status);
+        this.epicId = epic.id;
+        this.taskTypes = TaskTypes.SUBTASK;
+    }
 
-
-    public Subtask(int id, String title, Status status, String description, int epicId) {
-        super(id, title, status, description);
+    public Subtask(String title, String description, int epicId, Status status, int id) {
+        super(title, description, status, id, TaskTypes.SUBTASK);
         this.epicId = epicId;
     }
 
-
-    public int getEpicId(){
+    public int getEpicId() {
 
         return epicId;
     }
@@ -40,7 +43,7 @@ public class Subtask extends Task {
         Subtask subtask = (Subtask) o;
         return id == subtask.id && Objects.equals(title, subtask.title)
                 && Objects.equals(description, subtask.description)
-                && status == subtask.status  && epicId == subtask.epicId;
+                && status == subtask.status && epicId == subtask.epicId;
     }
 
     @Override
@@ -48,5 +51,9 @@ public class Subtask extends Task {
         return Objects.hash(super.hashCode(), epicId);
     }
 
+    @Override
+    public String toStringFromFile() {
+        return String.format("%s,%s,%s,%s,%s,%s", id, taskTypes, title, status, description, getEpicId());
+    }
 
 }

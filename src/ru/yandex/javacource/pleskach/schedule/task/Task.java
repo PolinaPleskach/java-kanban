@@ -7,14 +7,53 @@ public class Task {
     protected String title;
     protected String description;
     protected Status status;
-
-
+    protected TaskTypes taskTypes;
 
     public Task(int id, String title, Status status, String description) {
         this.title = title;
         this.description = description;
         this.id = id;
         this.status = status;
+        this.taskTypes = TaskTypes.TASK;
+    }
+
+    public Task(String title, String description, int id, TaskTypes taskTypes) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.taskTypes = taskTypes;
+    }
+
+    public Task(String title, String description, Status status, int id, TaskTypes taskTypes) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.taskTypes = taskTypes;
+    }
+
+    public Task(String title, String description, Status status, int id) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+    }
+
+    public Task(String title, String description, TaskTypes taskTypes) {
+        this.title = title;
+        this.description = description;
+        this.taskTypes = taskTypes;
+    }
+
+    public Task(String title, String description, Status status) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+    }
+
+    public Task(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public int getId() {
@@ -49,6 +88,13 @@ public class Task {
         this.description = description;
     }
 
+    public TaskTypes getTaskTypes() {
+        return taskTypes;
+    }
+
+    public void setTaskTypes(TaskTypes taskTypes) {
+        this.taskTypes = taskTypes;
+    }
 
     @Override
     public String toString() {
@@ -58,6 +104,11 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+
+    public String toStringFromFile() {
+        return String.format("%s,%s,%s,%s,%s,%s", id, taskTypes, title, status, description, "");
     }
 
     @Override

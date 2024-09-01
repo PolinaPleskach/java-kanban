@@ -1,8 +1,6 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
 import org.junit.jupiter.api.Test;
-import ru.yandex.javacource.pleskach.schedule.manager.*;
-
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
