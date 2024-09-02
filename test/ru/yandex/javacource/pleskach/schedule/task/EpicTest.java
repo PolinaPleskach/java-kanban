@@ -6,7 +6,7 @@ import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 
 class EpicTest {
     @Test
-    public void epicEqual() throws InvalidInputException {
+    public void epicEqual() {
         Epic epicOne = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         Epic epicTwo = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         Assertions.assertEquals(epicOne, epicTwo);
