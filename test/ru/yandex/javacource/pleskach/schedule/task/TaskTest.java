@@ -6,9 +6,9 @@ import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 
 class TaskTest {
     @Test
-    public void taskEqual() throws InvalidInputException {
-        Task taskOne = new Task(1, "task1", Status.NEW, "description1");
-        Task taskTwo = new Task(2, "task2", Status.NEW, "description2");
+    public void taskEqual()  {
+        Task taskOne = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
+        Task taskTwo = new Task(2, "Задача 2", Status.NEW, "Описание задачи 2");
         Assertions.assertNotEquals(taskOne, taskTwo);
     }
 }
