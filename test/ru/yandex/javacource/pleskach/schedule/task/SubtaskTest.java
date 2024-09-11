@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 import ru.yandex.javacource.pleskach.schedule.manager.Managers;
 import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
+ sprint_7-solution-in-file-manager
+
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class SubtaskTest {
     @Test
@@ -16,4 +20,5 @@ class SubtaskTest {
         Subtask subtaskTwo = new Subtask("Подзадача 2", "Описание подзадачи 2",1, Status.NEW,3);
         Assertions.assertEquals(subtaskOne, subtaskTwo);
     }
+
 }

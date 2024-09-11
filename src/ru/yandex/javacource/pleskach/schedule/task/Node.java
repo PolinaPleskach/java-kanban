@@ -1,6 +1,8 @@
 package ru.yandex.javacource.pleskach.schedule.task;
 
+sprint_7-solution-in-file-manager
 public class Node<T> {
+
 
     public Task data;
     public Node<T> next;
