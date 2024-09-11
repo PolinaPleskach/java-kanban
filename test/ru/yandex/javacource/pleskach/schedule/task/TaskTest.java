@@ -2,11 +2,8 @@ package ru.yandex.javacource.pleskach.schedule.task;
 
 
 import org.junit.jupiter.api.Test;
-import ru.yandex.javacource.pleskach.schedule.manager.Managers;
-import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+sprint_7-solution-in-file-manager
+
 
 
 class TaskTest {
@@ -14,20 +11,10 @@ class TaskTest {
     TaskManager taskManager = Managers.getDefault();
 
     @Test
-    void addNewTask(){
-        Task task = new Task(1,"task1", Status.NEW, "lala" );
-        taskManager.createTask(task);
-        final int taskId = task.getId();
-
-        final Task savedTask = taskManager.getTask(taskId);
-
-        assertNotNull(savedTask, "Задача не существует.");
-        assertEquals(task, savedTask, "Несовпадение задач");
-
-        final List<Task> tasks = taskManager.getAllTasks();
-
-        assertNotNull(tasks, "Задачи не возвращаются.");
-        assertEquals(1, tasks.size(), "Неверное количество задач.");
-        assertEquals(task, tasks.getFirst(), "Несовпадение задач");
+sprint_7-solution-in-file-manager
+    public void taskEqual()  {
+        Task taskOne = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
+        Task taskTwo = new Task(2, "Задача 2", Status.NEW, "Описание задачи 2");
+        Assertions.assertNotEquals(taskOne, taskTwo);
     }
 }

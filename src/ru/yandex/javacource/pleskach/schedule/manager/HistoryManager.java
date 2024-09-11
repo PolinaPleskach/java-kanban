@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface HistoryManager {
     void add(Task task);
-    void remove(int id);
+sprint_7-solution-in-file-manager
+
     List<Task> getHistory();
 }

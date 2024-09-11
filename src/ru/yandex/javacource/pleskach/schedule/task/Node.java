@@ -1,6 +1,8 @@
 package ru.yandex.javacource.pleskach.schedule.task;
 
-public class Node<T> { // отдельный класс Node для узла списка
+sprint_7-solution-in-file-manager
+public class Node<T> {
+
 
     public Task data;
     public Node<T> next;

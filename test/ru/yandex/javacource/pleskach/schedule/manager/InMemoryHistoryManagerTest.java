@@ -1,18 +1,20 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
-import ru.yandex.javacource.pleskach.schedule.task.*;
+sprint_7-solution-in-file-manager
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
+import ru.yandex.javacource.pleskach.schedule.task.Status;
+import ru.yandex.javacource.pleskach.schedule.task.Task;
 
 class InMemoryHistoryManagerTest {
 
     @Test
-    void SavingPreviousVersionAndDataWithoutRepetitions() {
-        HistoryManager historyManager = new InMemoryHistoryManager();
+sprint_7-solution-in-file-manager
+    void savingPastVersionOfData() throws InvalidInputException {
+
         TaskManager taskManager = new InMemoryTaskManager();
-        Task task1 = new Task(1, "Task1", Status.NEW, "descriptionTask1");
+        Task task1 = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
         taskManager.createTask(task1);
 
         historyManager.add(task1);
