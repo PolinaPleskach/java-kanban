@@ -11,8 +11,16 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
-    public int getEpicId() {
+    public Subtask(int id, String title, String description, Status status, int epicId) {
+        super(id, title, description, status);
+        this.epicId = epicId;
+    }
 
+    public TaskTypes getTaskType() {
+        return TaskTypes.SUBTASK;
+    }
+
+    public int getEpicId() {
         return epicId;
     }
 
@@ -44,11 +52,6 @@ public class Subtask extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), epicId);
-    }
-
-    @Override
-    public String toStringFromFile() {
-        return String.format("%s,%s,%s,%s,%s,%s", id, taskTypes, title, status, description, getEpicId());
     }
 
 }

@@ -17,6 +17,14 @@ public class Epic extends Task {
         super(title, description, id, TaskTypes.EPIC);
     }
 
+    public Epic(int id, String title, String description, Status status) {
+        super(id,title,description,status);
+
+    }
+
+    public TaskTypes getTaskType() {
+        return TaskTypes.EPIC;
+    }
 
     public ArrayList<Integer> getSubtaskIds() {
         return subtaskIds;
@@ -35,6 +43,7 @@ public class Epic extends Task {
                 ", status='" + status + '\'' +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
-    protected int generatorId;
-    protected Map<Integer, Task> tasks;
-    protected Map<Integer, Epic> epics;
-    protected Map<Integer, Subtask> subtasks;
-    protected HistoryManager historyManager;
+    protected  static int generatorId;
+    protected  Map<Integer, Task> tasks;
+    protected  Map<Integer, Epic> epics;
+    protected  Map<Integer, Subtask> subtasks;
+    protected  HistoryManager historyManager;
 
     public InMemoryTaskManager() {
         generatorId = 0;
@@ -34,7 +34,7 @@ public class InMemoryTaskManager implements TaskManager {
         return id;
     }
 
-    public void setId(int newId) {
+    public static void setId(int newId) {
         generatorId = newId;
     }
 
@@ -120,10 +120,10 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public Integer createSubTask(Subtask subtask) {
+    public int createSubtask(Subtask subtask) {
         int id = ++generatorId;
         subtask.setId(id);
-        subtasks.put(subtask.getId(), subtask);
+        subtasks.put(id, subtask);
         return subtask.getId();
     }
 

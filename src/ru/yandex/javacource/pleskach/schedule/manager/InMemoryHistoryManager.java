@@ -3,10 +3,7 @@ package ru.yandex.javacource.pleskach.schedule.manager;
 import ru.yandex.javacource.pleskach.schedule.task.Node;
 import ru.yandex.javacource.pleskach.schedule.task.Task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 

@@ -33,7 +33,7 @@ public interface TaskManager {
 
     void deleteEpics();
 
-    Integer createSubTask(Subtask subtask);
+    int createSubtask(Subtask subtask);
 
     void updateSubtask(Subtask subtask);
 

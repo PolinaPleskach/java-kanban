@@ -56,6 +56,25 @@ public class Task {
         this.description = description;
     }
 
+    public Task(int id, String title, String description, Status status, TaskTypes taskTypes) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.taskTypes = taskTypes;
+    }
+
+    public Task(int id, String title, String description, Status status) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+    }
+
+    public TaskTypes getTaskType() {
+        return TaskTypes.TASK;
+    }
+
     public int getId() {
         return id;
     }
@@ -68,10 +87,6 @@ public class Task {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -82,10 +97,6 @@ public class Task {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public TaskTypes getTaskTypes() {
@@ -104,11 +115,6 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 '}';
-    }
-
-
-    public String toStringFromFile() {
-        return String.format("%s,%s,%s,%s,%s,%s", id, taskTypes, title, status, description, "");
     }
 
     @Override

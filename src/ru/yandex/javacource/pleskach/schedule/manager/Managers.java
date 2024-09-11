@@ -1,5 +1,6 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
+import java.io.File;
 import java.nio.file.Path;
 
 public class Managers {
@@ -11,7 +12,7 @@ public class Managers {
         return new InMemoryHistoryManager();
     }
 
-    public FileBackedTaskManager getDefaultFileBackedTaskManager(Path file, Path fileToHistory) {
-        return new FileBackedTaskManager(file, fileToHistory);
+    public static TaskManager getDefaultFileBackedTaskManager() {
+        return new FileBackedTaskManager(new File ("./java-kanban.csv"));
     }
 }

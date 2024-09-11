@@ -12,8 +12,8 @@ class SubtaskTest {
         TaskManager taskManager = new Managers().getDefault();
         Epic epicOne = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         taskManager.createEpic(epicOne);
-        Subtask subtaskOne = new Subtask("Подзадача 1", "Описание подзадачи 1", 1, Status.NEW, 1);
-        Subtask subtaskTwo = new Subtask("Подзадача 1", "Описание подзадачи 1", 1, Status.NEW, 1);
+        Subtask subtaskOne = new Subtask("Подзадача 1", "Описание подзадачи 1",1, Status.NEW,2);
+        Subtask subtaskTwo = new Subtask("Подзадача 2", "Описание подзадачи 2",1, Status.NEW,3);
         Assertions.assertEquals(subtaskOne, subtaskTwo);
     }
 }
