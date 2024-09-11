@@ -10,7 +10,6 @@ import ru.yandex.javacource.pleskach.schedule.task.Task;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileBackedTaskManagerTest {
