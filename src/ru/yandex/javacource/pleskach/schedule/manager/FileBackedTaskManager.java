@@ -3,7 +3,6 @@ package ru.yandex.javacource.pleskach.schedule.manager;
 import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 import ru.yandex.javacource.pleskach.schedule.exception.ManagerSaveException;
 import ru.yandex.javacource.pleskach.schedule.task.*;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -99,7 +98,6 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
         return manager;
     }
-
 
     public static void loadFromHistoryFile(List<String> lines, FileBackedTaskManager manager) throws IOException {// сделать восстановление
         try {
