@@ -2,6 +2,7 @@ package ru.yandex.javacource.pleskach.schedule.task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 
 class EpicTest {

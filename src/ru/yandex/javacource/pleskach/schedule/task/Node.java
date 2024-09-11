@@ -2,6 +2,7 @@ package ru.yandex.javacource.pleskach.schedule.task;
 
 public class Node<T> {
 
+
     public Task data;
     public Node<T> next;
     public Node<T> previous;
