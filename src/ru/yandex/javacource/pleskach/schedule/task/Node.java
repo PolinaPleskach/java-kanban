@@ -1,6 +1,7 @@
 package ru.yandex.javacource.pleskach.schedule.task;
 
-public class Node<T> { // отдельный класс Node для узла списка
+public class Node<T> {
+
 
     public Task data;
     public Node<T> next;

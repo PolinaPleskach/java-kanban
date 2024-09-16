@@ -2,20 +2,19 @@ package ru.yandex.javacource.pleskach.schedule.task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 import ru.yandex.javacource.pleskach.schedule.manager.Managers;
 import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
-import ru.yandex.javacource.pleskach.schedule.task.Subtask;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class SubtaskTest {
     @Test
-    public void subtaskEqual() {
+    public void subtaskEqual() throws InvalidInputException {
         TaskManager taskManager = new Managers().getDefault();
-        Epic epicOne = new Epic(1, "epic1", Status.NEW, "description1");
+        Epic epicOne = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         taskManager.createEpic(epicOne);
-        Subtask subtaskOne = new Subtask(1, "subtask1", Status.NEW, "description1", 1);
-        Subtask subtaskTwo = new Subtask(1, "subtask2", Status.NEW, "description2", 1);
+        Subtask subtaskOne = new Subtask("Подзадача 1", "Описание подзадачи 1",1, Status.NEW,2);
+        Subtask subtaskTwo = new Subtask("Подзадача 2", "Описание подзадачи 2",1, Status.NEW,3);
         Assertions.assertEquals(subtaskOne, subtaskTwo);
     }
 

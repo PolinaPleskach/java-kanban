@@ -2,16 +2,14 @@ package ru.yandex.javacource.pleskach.schedule.task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.Map;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
+
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 
 class EpicTest {
     @Test
     public void epicEqual() {
-        Epic epicOne = new Epic(1, "epic1", Status.NEW, "description1");
-        Epic epicTwo = new Epic(1, "epic1", Status.NEW, "description1");
+        Epic epicOne = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
+        Epic epicTwo = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         Assertions.assertEquals(epicOne, epicTwo);
     }
 }

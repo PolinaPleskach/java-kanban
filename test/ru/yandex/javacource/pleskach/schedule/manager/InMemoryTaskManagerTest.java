@@ -1,25 +1,24 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
 import org.junit.jupiter.api.Test;
-import ru.yandex.javacource.pleskach.schedule.manager.InMemoryTaskManager;
-import ru.yandex.javacource.pleskach.schedule.manager.Managers;
-import ru.yandex.javacource.pleskach.schedule.manager.TaskManager;
+import ru.yandex.javacource.pleskach.schedule.exception.InvalidInputException;
 import ru.yandex.javacource.pleskach.schedule.task.Epic;
 import ru.yandex.javacource.pleskach.schedule.task.Status;
 import ru.yandex.javacource.pleskach.schedule.task.Subtask;
 import ru.yandex.javacource.pleskach.schedule.task.Task;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InMemoryTaskManagerTest {
+
     TaskManager taskManager = Managers.getDefault();
 
     @Test
-    void addDifferentTypesOfTasks()  {
-        Task task1 = new Task(1,"addTask1", Status.NEW,"addDescription1");
+    void addDifferentTypesOfTasks() throws InvalidInputException {
+        Task task1 = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
         taskManager.createTask(task1);
-        Epic epic1 = new Epic(1,"addEpic1", Status.NEW, "addDescription1");
+        Epic epic1 = new Epic(1, "Эпик 1", Status.IN_PROGRESS, "Описание эпика 1");
         taskManager.createTask(epic1);
-        Subtask subtask1 = new Subtask(1,"addSubtask1", Status.DONE,"addDescription1", 1);
+        Subtask subtask1 = new Subtask("Подзадача 1", "Описание подзадачи 1", 1, Status.NEW, 1);
         taskManager.createTask(subtask1);
 
         assertEquals(3, taskManager.getAllTasks().size());
@@ -30,19 +29,19 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void idDidNotConflicted(){
-        Task task1 = new Task(1,"addTask1", Status.NEW,"addDescription1");
+    void idDidNotConflicted() {
+        Task task1 = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
         taskManager.createTask(task1);
-        Task task2 = new Task(2,"addTask2", Status.NEW,"addDescription2");
+        Task task2 = new Task(2, "Задача 2", Status.NEW, "Описание задачи 2");
         taskManager.createTask(task2);
         task2.setId(1);
-        assertEquals(2,taskManager.getAllTasks().size());
+        assertEquals(2, taskManager.getAllTasks().size());
     }
 
     @Test
-    void immutabilityOfTasks() {
+    void immutabilityOfTasks() throws InvalidInputException {
         TaskManager taskManager = new InMemoryTaskManager();
-        Task task = new Task(1,"addTask1", Status.NEW,"addDescription1");
+        Task task = new Task(1, "Задача 1", Status.NEW, "Описание задачи 1");
         taskManager.createTask(task);
         Task task2 = taskManager.getTask(task.getId());
 

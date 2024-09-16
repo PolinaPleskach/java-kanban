@@ -1,15 +1,11 @@
 package ru.yandex.javacource.pleskach.schedule.manager;
 
+import ru.yandex.javacource.pleskach.schedule.task.Node;
 import ru.yandex.javacource.pleskach.schedule.task.Task;
 import ru.yandex.javacource.pleskach.schedule.task.Node;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
-
     private final Map<Integer, Node<Task>> history;
     private Node<Task> head;
     private Node<Task> tail;
@@ -67,17 +63,19 @@ public class InMemoryHistoryManager implements HistoryManager {
         final Node<Task> prev = node.previous;
         node.data = null;
         if (tail == node && head == node) {
-                tail = null;
-                head = null;
+
+            tail = null;
+            head = null;
         } else if (tail != node && head == node) {
-                head = next;
-                head.previous = null;
+            head = next;
+            head.previous = null;
         } else if (tail == node && head != node) {
-                tail = prev;
-                tail.next = null;
+            tail = prev;
+            tail.next = null;
         } else {
-                prev.next = next;
-                next.previous = prev;
+            prev.next = next;
+            next.previous = prev;
+
         }
     }
 }
