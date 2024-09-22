@@ -5,6 +5,9 @@ import ru.yandex.javacource.pleskach.schedule.exception.ManagerSaveException;
 import ru.yandex.javacource.pleskach.schedule.task.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +15,7 @@ import java.util.List;
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final File files;// сделать все в одно!
 
-    private static final String HEADER = "id,type,title,status,description,epic";//сделано в константу
-
+    private static final String HEADER = "id, type, title, status, description, start time, end time, duration, epicId";//сделано в константу
     public FileBackedTaskManager(File file) {
         this.files = file;
     }
@@ -54,6 +56,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
         if (!subtasks.isEmpty()) {
             for (Subtask subtask : subtasks.values()) {
+
                 lines.add(taskToString(subtask));
             }
         }
@@ -64,15 +67,18 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private String taskToString(Task task) {
-        return task.getId() + "," + task.getTaskType() + "," + task.getTitle() + "," + task.getStatus() + "," + task.getDescription();
+        return task.getId() + "," + task.getTaskType() + "," + task.getTitle() + "," + task.getStatus() + "," + task.getDescription() +
+                "," + task.getStartTime() + "," + task.getEndTime() + "," + task.getDuration();
     }
 
     private String taskToString(Epic epic) {
-        return epic.getId() + "," + epic.getTaskType() + "," + epic.getTitle() + "," + epic.getStatus() + "," + epic.getDescription();
+        return epic.getId() + "," + epic.getTaskType() + "," + epic.getTitle() + "," + epic.getStatus() + "," + epic.getDescription()+
+                 "," + epic.getStartTime() + "," + epic.getEndTime() + "," + epic.getDuration();
     }
 
     private String taskToString(Subtask subtask) {
-        return subtask.getId() + "," + subtask.getTaskType() + "," + subtask.getTitle() + "," + subtask.getStatus() + "," + subtask.getDescription() + "," + subtask.getEpicId();
+        return subtask.getId() + "," + subtask.getTaskType() + "," + subtask.getTitle() + "," + subtask.getStatus() + "," + subtask.getDescription() + ","
+                +subtask.getStartTime()  + "," + subtask.getEndTime() + "," + subtask.getDuration() + "," + subtask.getEpicId();
     }
 
     public static FileBackedTaskManager loadFromFile(File file) throws IOException {
@@ -121,21 +127,27 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
 
-    private static Task fromString(String[] line) {
+    private static Task fromString(String[] line) throws IOException {
         int id = Integer.parseInt(line[0]);
         TaskTypes type = TaskTypes.valueOf(line[1]);
         String title = line[2];
         Status status = Status.valueOf(line[3]);
         String description = line[4];
-        return switch (type) {
-            case TASK -> new Task(id, title, description, status);
-            case EPIC -> new Epic(id, title, description, status);
-            case SUBTASK -> {
-                int epicId = Integer.parseInt(line[5]);
-                yield new Subtask(id, title, description, status, epicId);
-            }
-        };
+        LocalDateTime startTime = LocalDateTime.parse(line[5]);
+        LocalDateTime endTime = LocalDateTime.parse(line[5]);
+        Duration duration =  Duration.parse(line[7]);
+
+        switch (type) {
+            case TASK:
+                return new Task(id, title, description, status, startTime,endTime,duration);
+            case EPIC:
+                return new Epic(id, title, description, status, startTime,endTime,duration);
+            case SUBTASK:
+                return new Subtask(id, title, description, status, startTime, endTime, duration,Integer.parseInt(line[8]));
+        }
+        return null;
     }
+
 
 
     @Override

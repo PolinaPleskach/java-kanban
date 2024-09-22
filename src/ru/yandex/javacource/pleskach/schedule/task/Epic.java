@@ -1,5 +1,7 @@
 package ru.yandex.javacource.pleskach.schedule.task;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -7,19 +9,16 @@ public class Epic extends Task {
 
     private ArrayList<Integer> subtaskIds;
 
-    public Epic(int id, String title, Status status, String description) {
-        super(id, title, status, description);
+    public Epic(int id, String title, String description, Duration duration, LocalDateTime startTime) {
+        super(id, title, description, Status.NEW, duration, startTime);
         subtaskIds = new ArrayList<>();
         this.taskTypes = TaskTypes.EPIC;
     }
 
-    public Epic(String title, String description, int id) {
-        super(title, description, id, TaskTypes.EPIC);
-    }
-
-    public Epic(int id, String title, String description, Status status) {
-        super(id,title,description,status);
-
+    public Epic(int id, String title, String description, Status status, LocalDateTime startTime, LocalDateTime endTime, Duration duration) {
+        super(id, title, description, status, startTime,endTime, duration);
+        subtaskIds = new ArrayList<>();
+        this.taskTypes = TaskTypes.EPIC;
     }
 
     public TaskTypes getTaskType() {
@@ -56,12 +55,12 @@ public class Epic extends Task {
                 && status == epic.status && Objects.equals(subtaskIds, epic.subtaskIds);
     }
 
+    public void cleanSubtaskIds() {
+        subtaskIds.clear();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), subtaskIds);
-    }
-
-    public void cleanSubtaskIds() {
-        subtaskIds.clear();
     }
 }
