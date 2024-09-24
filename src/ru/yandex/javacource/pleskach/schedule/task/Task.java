@@ -1,75 +1,58 @@
 package ru.yandex.javacource.pleskach.schedule.task;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Task {
-    protected int id;
+    protected Integer id;
     protected String title;
     protected String description;
     protected Status status;
     protected TaskTypes taskTypes;
+    private Duration duration;
+    private LocalDateTime startTime = LocalDateTime.now();
+    protected LocalDateTime endTime;
 
-    public Task(int id, String title, Status status, String description) {
+    public Task(int id, String title, String description, Status status, LocalDateTime startTime, LocalDateTime endTime, Duration duration) {
+        this.id = id;
         this.title = title;
         this.description = description;
-        this.id = id;
         this.status = status;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = duration;
         this.taskTypes = TaskTypes.TASK;
     }
 
-    public Task(String title, String description, int id, TaskTypes taskTypes) {
+    public Task(int id, String title, String description, Status status, Duration duration, LocalDateTime startTime) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.taskTypes = TaskTypes.TASK;
+        this.duration = duration;
+        this.startTime = startTime;
+    }
+
+    public Task(int id, String title, String description, TaskTypes taskTypes, LocalDateTime startTime, Duration duration) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.taskTypes = taskTypes;
+        this.duration = duration;
+        this.startTime = startTime;
     }
 
-    public Task(String title, String description, Status status, int id, TaskTypes taskTypes) {
+    public Task(int id, String title, String description, Status status, LocalDateTime startTime, Duration duration) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
-        this.taskTypes = taskTypes;
+        this.duration = duration;
+        this.startTime = startTime;
     }
 
-    public Task(String title, String description, Status status, int id) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-    }
-
-    public Task(String title, String description, TaskTypes taskTypes) {
-        this.title = title;
-        this.description = description;
-        this.taskTypes = taskTypes;
-    }
-
-    public Task(String title, String description, Status status) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-    }
-
-    public Task(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public Task(int id, String title, String description, Status status, TaskTypes taskTypes) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.taskTypes = taskTypes;
-    }
-
-    public Task(int id, String title, String description, Status status) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-    }
 
     public TaskTypes getTaskType() {
         return TaskTypes.TASK;
@@ -99,21 +82,39 @@ public class Task {
         return description;
     }
 
-    public TaskTypes getTaskTypes() {
-        return taskTypes;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setTaskTypes(TaskTypes taskTypes) {
-        this.taskTypes = taskTypes;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     @Override
     public String toString() {
-        return "ru.yandex.javacource.Pleskach.ru.yandex.javacource.Pleskach.schedule.ru.yandex.javacource.pleskach.schedule.test.manager.Task{" +
+        return "Task{" +
                 "idTask=" + id +
                 ", name='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
+                "Duration: " + getDuration().toMinutes() + " min, " +
+                "StartTime: " + getStartTime() +
                 '}';
     }
 
@@ -131,4 +132,6 @@ public class Task {
     public int hashCode() {
         return Objects.hash(title, description, id, status);
     }
+
+
 }
