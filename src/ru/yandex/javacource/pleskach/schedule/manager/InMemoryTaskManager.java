@@ -195,6 +195,16 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
+    public ArrayList<Subtask> getEpicSubtasks(Epic epic) {
+        List<Integer> epicSubtasksId = epic.getSubtaskIds();
+        ArrayList<Subtask> epicSubtask = new ArrayList<>();
+        for (Integer subtaskIds : epicSubtasksId) {
+            epicSubtask.add(subtasks.get(subtaskIds));
+        }
+        return epicSubtask;
+    }
+
+    @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
     }
@@ -219,7 +229,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    private void timeOfTheEpics(Epic epic) {
+    private void updateEpicDuration(Epic epic) {
         LocalDateTime start = null;
         LocalDateTime end = null;
         Duration duration = Duration.of(0, ChronoUnit.MINUTES);
@@ -264,6 +274,7 @@ public class InMemoryTaskManager implements TaskManager {
         } else {
             epic.setStatus(Status.IN_PROGRESS);
         }
-        timeOfTheEpics(epic);
+        updateEpicDuration(epic);
     }
+
 }

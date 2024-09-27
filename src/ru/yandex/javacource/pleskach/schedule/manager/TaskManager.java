@@ -5,6 +5,7 @@ import ru.yandex.javacource.pleskach.schedule.task.Epic;
 import ru.yandex.javacource.pleskach.schedule.task.Subtask;
 import ru.yandex.javacource.pleskach.schedule.task.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
@@ -45,7 +46,10 @@ public interface TaskManager {
 
     void deleteSubtasks();
 
+    ArrayList<Subtask> getEpicSubtasks(Epic epic);
+
     List<Task> getHistory();
 
     List<Task> getPrecedenceTasks();
+
 }

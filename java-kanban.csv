@@ -1,8 +1,8 @@
 id, type, title, status, description, start time, end time, duration, epicId
-1,TASK,Задача 1,NEW,Описание задачи 1,2024-09-17T07:00,2024-09-17T07:10,PT10M
-2,EPIC,Эпик 1,NEW,Описание эпика 1,2024-09-16T00:00,2025-10-15T00:15,PT26M
-3,SUBTASK,Подзадача 1,NEW,Описание подзадачи 1,2025-10-15T00:00,2025-10-15T00:15,PT15M,2
-4,SUBTASK,Подзадача 2,NEW,Описание подзадачи 2,2024-09-16T00:00,2024-09-16T00:11,PT11M,2
+1,TASK,Task 1,NEW,Description 1,2024-09-17T07:00,2024-09-17T07:10,PT10M
+2,EPIC,Epic 1,NEW,Description 1,2024-09-16T00:00,2025-10-15T00:15,PT26M
+3,SUBTASK,Subtask 1,NEW,Description 1,2025-10-15T00:00,2025-10-15T00:15,PT15M,2
+4,SUBTASK,Subtask 2,NEW,Description 2,2024-09-16T00:00,2024-09-16T00:11,PT11M,2
 
 2,,,,,
 1,,,,,
