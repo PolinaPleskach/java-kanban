@@ -18,51 +18,51 @@ import java.time.temporal.ChronoUnit;
 public class Main {
 
     public static void main(String[] args) throws InvalidInputException, IOException {
-        TaskManager manager = Managers.getDefaultFileBackedTaskManager();
-        Task taskOne = new Task(1, "Задача 1", "Описание задачи 1", Status.NEW,
+        TaskManager taskManager = Managers.getDefaultFileBackedTaskManager();
+        Task taskOne = new Task(1, "Task 1", "Description 1", Status.NEW,
                 Duration.of(10, ChronoUnit.MINUTES), LocalDateTime.of(2024, 9, 17, 7, 0));
-        int task1 = manager.createTask(taskOne);
+        int task1 = taskManager.createTask(taskOne);
+        
 
-        Epic epicOne = new Epic(2, "Эпик 1", "Описание эпика 1", Duration.of(15, ChronoUnit.MINUTES),
+        Epic epicOne = new Epic(2, "Epic 1", "Description 1", Duration.of(15, ChronoUnit.MINUTES),
                 LocalDateTime.of(2024,10,15, 0, 0));
-        int epicOneId = manager.createEpic(epicOne);
+        int epicOneId = taskManager.createEpic(epicOne);
 
-        Subtask subtaskOne = new Subtask(3, "Подзадача 1", "Описание подзадачи 1", Status.NEW,
+        Subtask subtaskOne = new Subtask(3, "Subtask 1", "Description 1", Status.NEW,
                 LocalDateTime.of(2025, 10, 15, 0, 0), Duration.of(15, ChronoUnit.MINUTES),2);
 
-        int subtaskOneId = manager.createSubtask(subtaskOne);
+        int subtaskOneId = taskManager.createSubtask(subtaskOne);
 
-        Subtask subtaskTwo = new Subtask(4, "Подзадача 2", "Описание подзадачи 2", Status.NEW,
+        Subtask subtaskTwo = new Subtask(4, "Subtask 2", "Description 2", Status.NEW,
                 LocalDateTime.of(2024, 9, 16, 0, 0), Duration.of(11, ChronoUnit.MINUTES),2);
-        manager.createSubtask(subtaskTwo);
-        System.out.println(manager.getAllTasks());
-        System.out.println(manager.getAllEpics());
-        System.out.println(manager.getAllSubtasks());
-        System.out.println(manager.getSubtasks(subtaskOneId));
-        System.out.println(manager.getEpic(epicOneId));
-        System.out.println(manager.getTask(task1));
-        System.out.println(manager.getSubtasks(subtaskOneId));
+        taskManager.createSubtask(subtaskTwo);
+        System.out.println(taskManager.getAllTasks());
+        System.out.println(taskManager.getAllEpics());
+        System.out.println(taskManager.getAllSubtasks());
+        System.out.println(taskManager.getSubtasks(subtaskOneId));
+        System.out.println(taskManager.getEpic(epicOneId));
+        System.out.println(taskManager.getTask(task1));
+        System.out.println(taskManager.getSubtasks(subtaskOneId));
 
         System.out.println("История задач:");
-        for (Task task : manager.getAllTasks()) {
+        for (Task task : taskManager.getAllTasks()) {
             System.out.println(task);
         }
         System.out.println("История эпиков:");
-        for (Task epic : manager.getAllEpics()) {
+        for (Task epic : taskManager.getAllEpics()) {
             System.out.println(epic);
         }
         System.out.println("История подзадач:");
-        for (Task subtask : manager.getAllSubtasks()) {
+        for (Task subtask : taskManager.getAllSubtasks()) {
             System.out.println(subtask);
         }
         System.out.println("История:");
-        for (Task task : manager.getHistory()) {
+        for (Task task : taskManager.getHistory()) {
             System.out.println(task);
         }
         TaskManager load = FileBackedTaskManager.loadFromFile(new File("./java-kanban.csv"));
         System.out.println(load);
         System.out.println("Вывод задач в порядке приоритета");
-        manager.getPrecedenceTasks().forEach( System.out::println);
-
+        taskManager.getPrecedenceTasks().forEach( System.out::println);
     }
 }
